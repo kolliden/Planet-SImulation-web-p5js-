@@ -10,7 +10,7 @@ class Planet {
 		this.G = G || 0;
 		this.B = B || 0;
 		this.mass = mass || 10;
-		this.radius = pow(this.mass, 0.8);
+		this.radius = this.calculateRadius(this.mass)
 		this.pos = createVector(x, y);
 		this.vel = createVector(0, 0);
 		this.acc = createVector(accx, accy);
@@ -20,6 +20,10 @@ class Planet {
 
 	getTotalVel(){
 		return Math.sqrt(sq(this.vel.x) + sq(this.vel.y));
+	}
+
+	calculateRadius(m){
+		return pow(m, 0.8);
 	}
 
 	collide = function (body) {
@@ -32,6 +36,7 @@ class Planet {
 				let newVel = createVector((a.x + b.x)/c, (a.y + b.y)/ c);
 				this.vel = newVel;
 				this.mass += body.mass;
+				this.radius = this.calculateRadius(this.mass);
 
 				return true
 			}

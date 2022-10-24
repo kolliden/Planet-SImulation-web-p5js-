@@ -3,6 +3,8 @@ class ClickHandler {
         this.shooting = false;
         this.c_shooting = false;
         this.touchKey = false;
+
+        this.mouseReleased = false;
     }
 
     update = function () {
@@ -10,12 +12,18 @@ class ClickHandler {
         if (mouseX < 0 || mouseX > hud.x || mouseY < 0  || mouseY > hud.y) {
 
             for (const i in planets) {
-                if(pointCircle(mouseX/sf, mouseY/sf, planets[i].pos.x, planets[i].pos.y, planets[i].radius)){
+                if(pointCircle(mouseX/sf, mouseY/sf, planets[i].pos.x, planets[i].pos.y, planets[i].radius + 10/sf)){
                     planets[i].R = planets[i].R-100;
                     planets[i].G = planets[i].G-100;
                     planets[i].B = planets[i].B-100;
-                }
 
+                    if(this.mouseReleased){
+                        currentPlanetIndex = i;
+                        this.mouseReleased = false;
+                        return;
+                    }
+                    return;
+                }
             }
 
             /* This is the code that allows the user to shoot a planet on a circular Orbit by clicking and
@@ -63,6 +71,7 @@ class ClickHandler {
                 this.shooting = false;
 
                 shooter.reset();
+                this.mouseReleased = false;
             }
         }
     }

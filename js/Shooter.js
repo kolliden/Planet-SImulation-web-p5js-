@@ -21,30 +21,30 @@ class Shooter {
         this.force_y = 0;
         this.mass = mass;
 
-        if (abs(mouseX / sf - generalOffset.x) < abs(mouseY / sf - generalOffset.y)) {
-            this.x1 = biggestMass.pos.x;
+        if (-mouseX > mouseY) {
+            this.x1 = planets[currentPlanetIndex].pos.x;
             this.y1 = mouseY / sf - generalOffset.y;
             this.y2 = mouseY / sf - generalOffset.y;
-            this.force = sqrt(G * biggestMass.mass / dist(biggestMass.pos.x, biggestMass.pos.y, this.x1, this.y1));
+            this.force = sqrt(G * planets[currentPlanetIndex].mass / dist(planets[currentPlanetIndex].pos.x, planets[currentPlanetIndex].pos.y, this.x1, this.y1));
             this.force_x = this.force;
             this.x2 = this.x1 - (10 * this.force_x);
 
         } else {
             this.x1 = mouseX / sf - generalOffset.x;
             this.x2 = mouseX / sf - generalOffset.x;
-            this.y1 =  biggestMass.pos.y;
-            this.force = sqrt(G * biggestMass.mass / dist(biggestMass.pos.x, biggestMass.pos.y, this.x1, this.y1));
+            this.y1 =  planets[currentPlanetIndex].pos.y;
+            this.force = sqrt(G * planets[currentPlanetIndex].mass / dist(planets[currentPlanetIndex].pos.x, planets[currentPlanetIndex].pos.y, this.x1, this.y1));
             this.force_y = this.force;
             this.y2 = this.y1 - (10 * this.force_y);
         }
     }
 
     setCOForces = function(){
-        if (this.x1 == windowWidth / 2) {
+        if (this.x1 == planets[currentPlanetIndex].pos.x) {
             this.force_x = -this.force_x;
             this.x2 = this.x1 - (10 * this.force_x);
 
-        } else if (this.y1 == windowHeight / 2) {
+        } else if (this.y1 == planets[currentPlanetIndex].pos.y) {
             this.force_y = -this.force_y;
             this.y2 = this.y1 - (10 * this.force_y);
 

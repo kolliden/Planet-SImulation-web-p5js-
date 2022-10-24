@@ -15,7 +15,7 @@ let debug = false;
 let offsets;
 let generalOffset;
 let cameraPos;
-let sf = 1;
+let sf = 0.1;
 
 //Simulation Constants
 const G = 1;
@@ -31,19 +31,10 @@ function setup() {
     hud.init();
 
     createCanvas(windowWidth, windowHeight);
-    sun = new Planet(0 ,0, 0, 0, 0, 255, 255, 255, 1988500, "Sun", false);
-    earth = new Planet(1, 148950000000, 0, 0, 0, 255, 255, 255, 1988500/333000, "Earth", false);
-    // sun = new Planet(0, 0, 0, 0, 255, 255, 255, 1988, "Sun", false);
-    // earth = new Planet(14895, 0, 0, 0, 255, 255, 255, 1, "Earth", false);
-    // earth = new Planet(0, 0, 0, 0, 255, 255, 255, 1988500/333000, false);
-    // earth = new Planet(0, 0, 0, 0, 255, 255, 255, 1988500/333000, false);
-    // earth = new Planet(0, 0, 0, 0, 255, 255, 255, 1988500/333000, false);
-    // earth = new Planet(0, 0, 0, 0, 255, 255, 255, 1988500/333000, false);
 
+    sun = new Planet(0, 0, 0, 10, 10, 255, 255, 255, 6000, "Sun", false);
     biggestMass = sun;
-
     append(planets, sun);
-    append(planets, earth);
 }
 
 function draw() {
@@ -63,16 +54,16 @@ function draw() {
     }
 
     cameraPos = createVector(
-        windowWidth/2  + planets[currentPlanetIndex].pos.x + offsets.x,
-        windowHeight/2 + planets[currentPlanetIndex].pos.y + offsets.y
+        windowWidth/2/sf  - planets[currentPlanetIndex].pos.x - planets[currentPlanetIndex].vel.x + offsets.x,
+        windowHeight/2/sf - planets[currentPlanetIndex].pos.y - planets[currentPlanetIndex].vel.y + offsets.y
     );
 
-	translate(cameraPos.x, cameraPos.y);
     scale(sf);
+	translate(cameraPos.x, cameraPos.y);
 
     generalOffset = createVector(
-        -cameraPos.x*sf,
-        -cameraPos.y*sf
+        cameraPos.x,
+        cameraPos.y
     );
 
     /* Check if a planet is out of bounds */
@@ -136,6 +127,10 @@ function draw() {
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
+}
+
+function mouseReleased(event) {
+    clickHandler.mouseReleased = true;
 }
 
 window.addEventListener("wheel", function(e) {
