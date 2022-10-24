@@ -39,18 +39,19 @@ function setup() {
 
 function draw() {
     background(100);
+    frameRate(40000);
 
     if (keyIsDown(LEFT_ARROW)) {
-        offsets.x += pow(50, sf);
+        offsets.x += pow(1/sf, 2);
     }
     if (keyIsDown(RIGHT_ARROW)) {
-        offsets.x -= pow(50, sf);
+        offsets.x -= pow(1/sf, 2);
     }
     if (keyIsDown(UP_ARROW)) {
-        offsets.y += pow(50, sf);
+        offsets.y += pow(1/sf, 2);
     }
     if (keyIsDown(DOWN_ARROW)) {
-        offsets.y -= pow(50, sf);
+        offsets.y -= pow(1/sf, 2);
     }
 
     cameraPos = createVector(
@@ -93,6 +94,9 @@ function draw() {
                     planet to the to_splice array. */
                     if (!to_splice.includes(i)){
                         if (planets[i].collide(planets[j])) {
+                            if (i == currentPlanetIndex || currentPlanetIndex == planets.length-1){
+                                currentPlanetIndex = 0; // there will always be at least 1 planet
+                            }
                             append(to_splice, j);
                         }
                     }

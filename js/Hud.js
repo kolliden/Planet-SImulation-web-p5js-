@@ -13,6 +13,7 @@ class Hud{
         this.inp = createInput('Planet Xvel:').position(7, 170).style('width', '150px');
         this.inp1 = createInput('Planet Yvel:').position(7, 190).style('width', '150px');
         this.button3 = createButton('Set Vel').position(7, 210).style('width', '150px');
+        this.slider1 = createSlider(1, 240, 60, 1).position(10, 230).style('width', '130px');
 
 
         this.nextMass = 10;

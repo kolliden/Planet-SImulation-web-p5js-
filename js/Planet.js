@@ -113,7 +113,7 @@ class Planet {
 		/* Draw trajectory */
 		strokeWeight(3);
 		beginShape(LINES);
-		if (255 == this.count) { //TODO: make traj longer in proportion to speed
+		if (25500 == this.count) { //TODO: make traj longer in proportion to speed
 			for (var i = 0; i < this.count - 1; i++) {
 				this.traj[i] = this.traj[i + 1];
 			}
