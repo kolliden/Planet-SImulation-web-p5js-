@@ -3,7 +3,7 @@
  <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
 </p>
 
-<h3 align="center">Project Title</h3>
+<h3 align="center">Solar System Sim</h3>
 
 <div align="center">
 
@@ -16,7 +16,7 @@
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> This is a planet sim where the user can create planets and see how they interact with eachother.
     <br> 
 </p>
 
@@ -34,7 +34,7 @@
 
 ## 🧐 About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+Click to add planets to the scene. Press "o" on your keyboard to send the planet into an circular orbit. Press on a planet to teleport to it and follow its movement.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -50,12 +50,10 @@ Give examples
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running.
-
-Say what the step will be
+You can accsess it by this link:
 
 ```
-Give the example
+https://kolliden.github.io/Planet-SImulation-web-p5js-/index.html
 ```
 
 And repeat
